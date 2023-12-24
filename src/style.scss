@@ -91,7 +91,9 @@
                     }
 
                     &:hover {
-                        transform: scale(1.02);
+                        img {
+                            transform: translate(0, -15px);
+                        }
                     }
     
 
