@@ -37,24 +37,24 @@ export const Pokemons = () => {
       <main className="main">
         <div className="pokemons">
           {pokemonData.map((pokemon) => (
-            <div className="card" key={pokemon.id}>
-              <h2>{pokemon.name}</h2>
-              <p>Number: {pokemon.id}</p>
-              <div className="img">
+            <article className="card" key={pokemon.id}>
+              {/* <div className="card-circulo"></div> */}
+              <header className="card-header">
+                <p>#{pokemon.id}</p>
+              </header>
+              <figure className="img">
                 <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              </div>
-              <p>
-                Type: {pokemon.types.map((type) => type.type.name).join(", ")}
-              </p>
-              <p>Height: {pokemon.height / 10} m</p>
-              <p>Weight: {pokemon.weight / 10} kg</p>
-              <p>
-                Abilities:{" "}
-                {pokemon.abilities
-                  .map((ability) => ability.ability.name)
-                  .join(", ")}
-              </p>
-            </div>
+                <h2>{pokemon.name}</h2>
+              </figure>
+
+              <section className="card-body">
+                <div className="type">
+                  {pokemon.types.map((type) => (
+                    <span key={type.name}>{type.type.name}</span>
+                  ))}
+                </div>
+              </section>
+            </article>
           ))}
         </div>
       </main>

@@ -28,7 +28,6 @@
         display: grid;
         gap: 16px;
         padding: 16px;
-        border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         overflow-y: auto; // Añade desplazamiento vertical si es necesario
 
@@ -40,35 +39,107 @@
             
             .card {
                 background-color: #fffefe;
-                border: 1px solid #fffefe;
+                box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);
                 padding: 12px;
-                border-radius: 4px;
+                padding-bottom: .5rem;
+                border-radius: 10px;
                 transition: transform 0.2s ease-in-out;
-
+                position: relative;
                 &:hover {
                     transform: scale(1.01);
                 }
 
-                h2 {
-                    font-size: 18px;
-                    margin-bottom: 8px;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 40%;
+                    border-radius: 10px 10px 4rem 4rem;
+                    background-color: blue;
+                    background: linear-gradient(180deg, rgb(129, 107, 250), rgba(7, 65, 255, 0.2));
+                }
+                
+                .card-header{
+                    display: flex;
+                    position: relative;
+                    justify-content: flex-end;
+                    align-items: center;
+                    padding-right: 1rem;
+
+                    p{
+                        font-size: 14px;
+                        color: #eceaea;
+                        font-weight: 900;
+                    }
                 }
 
                 .img{
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    flex-direction: column;
+                    position: relative;
                     img {
-                        align-items: center;
                         object-fit: cover;
                         width: 10rem;
-                        border-radius: 4px;
+                        filter: drop-shadow(5px 5px 10px #555);
+                    }
+
+                    h2{
+                        font-size: 18px;
+                        color: #000000;
+                        font-weight: 900;
+                        padding: 0;
+                        margin: 0;
                     }
                 }
 
-                p {
-                    font-size: 14px;
-                    margin: 8px 0;
+                .card-body{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    margin-bottom: 2rem;
+
+                    .type{
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        flex-direction: row;
+
+                        span{
+                            width: 4rem;
+                            text-align: center;
+                            background-color: rgb(194, 186, 76);
+                            color: #fafafa;
+                            border-radius: 5px;
+                            padding: 2px;
+                        }
+                    }
+
+                    p{
+                        font-size: 14px;
+                        color: #000000;
+                        font-weight: 900;
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+
+                .card-footer{
+                    display: flex;
+                    justify-content: end;
+                    align-items: flex-end;
+                    padding: 1rem 1rem 0 1rem;
+                    cursor: pointer;
+
+                    span{
+                        font-size: 14px;
+                        color: #000000;
+                        font-weight: 700;
+                    }
                 }
             }
         }
