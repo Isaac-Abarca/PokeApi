@@ -1,0 +1,76 @@
+.app {
+    height: 100vh;
+    margin: 0;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #bcbcc0;
+        border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+
+    .header {
+        display: flex;
+        justify-content: center;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px;
+    }
+
+    .main {
+        display: grid;
+        gap: 16px;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; // Añade desplazamiento vertical si es necesario
+
+        .pokemons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            background-color: #f2f2f2;
+            
+            .card {
+                background-color: #fffefe;
+                border: 1px solid #fffefe;
+                padding: 12px;
+                border-radius: 4px;
+                transition: transform 0.2s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.01);
+                }
+
+                h2 {
+                    font-size: 18px;
+                    margin-bottom: 8px;
+                }
+
+                .img{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        align-items: center;
+                        object-fit: cover;
+                        width: 10rem;
+                        border-radius: 4px;
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                    margin: 8px 0;
+                }
+            }
+        }
+    }
+}
