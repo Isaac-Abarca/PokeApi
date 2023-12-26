@@ -1,156 +1,314 @@
-.app {
-    height: 100vh;
-    margin: 0;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-        width: 10px;
+// Definición de funciones
+@function lighten-darken($color, $amount) {
+  $amount: max(min($amount, 100%), 0%);
+  $color: mix(white, $color, $amount);
+  @return $color;
+}
+
+@mixin generate-linear-gradient($main-color, $alpha: 0.2) {
+  $secondary-color: lighten-darken($main-color, -20%); // Ajusta el porcentaje según sea necesario
+  background: linear-gradient(180deg, $main-color, rgba($secondary-color, $alpha));
+}
+
+section {
+  background-color: #f0f2f5;
+
+  .main {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    display: grid;
+    grid-template-columns: 1fr 350px;
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr;
+
+      .aside {
+        display: none;
+      }
     }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: #bcbcc0;
-        border-radius: 6px;
+    .aside {
+      content: "Holaaaaaaaaaaaaaaaaaa";
     }
 
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
-    
+    .pokemons {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 5rem 1fr;
+      padding: 1rem;
+      grid-gap: 1rem;
 
-    .header {
-        display: flex;
-        justify-content: center;
-        background-color: #ffffff;
-        color: #000000;
-        padding: 10px;
-    }
+      .header {
 
-    .main {
-        display: grid;
-        gap: 16px;
-        padding: 16px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow-y: auto; // Añade desplazamiento vertical si es necesario
+        div {
+          height: 5rem;
+          background-color: white;
+          border-radius: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 2rem;
 
-        .pokemons {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            background-color: #f2f2f2;
-            
-            .card {
-                background-color: #fffefe;
-                box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);
-                padding: 12px;
-                padding-bottom: .5rem;
-                border-radius: 10px;
-                transition: transform 0.2s ease-in-out;
-                position: relative;
-                &:hover {
-                    transform: scale(1.01);
-                }
+          input {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #8298c4;
+          }
 
-                &::before{
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    width: 100%;
-                    height: 50%;
-                    shape-outside: circle(50% at 50% 100%);
-                    clip-path: circle(50% at 50% 100%);
-                    background-color: blue;
-                    background: linear-gradient(180deg, rgb(129, 107, 250), rgba(7, 65, 255, 0.2));
-                }
-                
-                .card-header{
-                    display: flex;
-                    position: relative;
-                    justify-content: flex-end;
-                    align-items: center;
-                    padding-right: 1rem;
+          button {
+            border: none;
+            outline: none;
+            min-width: 2.5rem;
+            min-height: 2.5rem;
+            background-color: #fe5250;
+            box-shadow: 2px 2px 2px 1px rgba(255, 97, 94, 0.2);
+            cursor: pointer;
+            border-radius: 10px;
+            color: white;
 
-                    p{
-                        font-size: 19px;
-                        color: #c9c3c3;
-                        font-weight: 900;
-                    }
-                }
-
-                .img{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    position: relative;
-                    img {
-                        object-fit: cover;
-                        width: 10rem;
-                        filter: drop-shadow(5px 5px 10px #555);
-                        transition: transform 0.2s ease-in-out;
-                    }
-
-                    &:hover {
-                        img {
-                            transform: translate(0, -15px);
-                        }
-                    }
-    
-
-                    h2{
-                        font-size: 18px;
-                        color: #6d6868;
-                        font-weight: 700;
-                        padding: 0;
-                        margin: 0;
-                    }
-                }
-
-                .card-body{
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    margin-bottom: 2rem;
-
-                    .type{
-                        display: flex;
-                        justify-content: space-evenly;
-                        align-items: center;
-                        flex-direction: row;
-
-                        span{
-                            width: 4rem;
-                            text-align: center;
-                            background-color: rgb(194, 186, 76);
-                            color: #fafafa;
-                            border-radius: 5px;
-                            padding: 2px;
-                        }
-                    }
-
-                    p{
-                        font-size: 14px;
-                        color: #000000;
-                        font-weight: 900;
-                        padding: 0;
-                        margin: 0;
-                    }
-                }
-
-                .card-footer{
-                    display: flex;
-                    justify-content: end;
-                    align-items: flex-end;
-                    padding: 1rem 1rem 0 1rem;
-                    cursor: pointer;
-
-                    span{
-                        font-size: 14px;
-                        color: #000000;
-                        font-weight: 700;
-                    }
-                }
+            &:hover {
+              background-color: #f07472;
+              box-shadow: 2px 2px 2px 1px rgba(255, 97, 94, 0.2);
             }
+
+          }
         }
+
+      }
+
+      .pokemons-main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 1.5rem;
+
+        .card {
+          background-color: #fffefe;
+          box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);
+          border-radius: 10px;
+          transition: transform 0.2s ease-in-out;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 50%;
+            shape-outside: circle(50% at 50% 100%);
+            clip-path: circle(50% at 50% 100%);
+          }
+
+          &.normal {
+            &::before {
+              @include generate-linear-gradient(#BCBCAC, 0.2);
+            }
+          }
+
+          &.fighting {
+            &::before {
+              @include generate-linear-gradient(#BC5442, 0.2);
+            }
+          }
+
+          &.flying {
+            &::before {
+              @include generate-linear-gradient(#669AFF, 0.2);
+            }
+          }
+
+          &.poison {
+            &::before {
+              @include generate-linear-gradient(#AB549A, 0.2);
+            }
+          }
+
+          &.ground {
+            &::before {
+              @include generate-linear-gradient(#DEBC54, 0.2);
+            }
+          }
+
+          &.rock {
+            &::before {
+              @include generate-linear-gradient(#BCAC66, 0.2);
+            }
+          }
+        
+          &.bug {
+            &::before {
+              @include generate-linear-gradient(#ABBC1C, 0.2);
+            }
+          }
+
+          &.ghost {
+            &::before {
+              @include generate-linear-gradient(#6666BC, 0.2);
+            }
+          }
+
+          &.steel {
+            &::before {
+              @include generate-linear-gradient(#ABACBC, 0.2);
+            }
+          }
+
+          &.fire {
+            &::before {
+              @include generate-linear-gradient(#FF421C, 0.2);
+            }
+          }
+
+          &.water {
+            &::before {
+              @include generate-linear-gradient(#2F9AFF, 0.2);
+            }
+          }
+
+          &.grass {
+            &::before {
+              @include generate-linear-gradient(#78CD54, 0.2);
+            }
+          }
+
+          &.electric {
+            &::before {
+              @include generate-linear-gradient(#FFCD30, 0.2);
+            }
+          }
+
+          &.psychic {
+            &::before {
+              @include generate-linear-gradient(#FF549A, 0.2);
+            }
+          }
+
+          &.ice {
+            &::before {
+              @include generate-linear-gradient(#78DEFF, 0.2);
+            }
+          }
+
+          &.dragon {
+            &::before {
+              @include generate-linear-gradient(#7866EF, 0.2);
+            }
+          }
+
+          &.dark {
+            &::before {
+              @include generate-linear-gradient(#785442, 0.2);
+            }
+          }
+
+          &.fairy {
+            &::before {
+              @include generate-linear-gradient(#FFACFF, 0.2);
+            }
+          }
+
+          &:hover {
+            .img {
+              img {
+                transform: translate(0, -5px);
+              }
+            }
+          }
+
+          .card-header {
+            display: flex;
+            position: relative;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 1rem;
+
+            p {
+              font-size: 19px;
+              color: #c9c3c3;
+              font-weight: 900;
+            }
+          }
+
+          .img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+
+            img {
+              width: 10rem;
+              object-fit: cover;
+              object-position: center;
+              filter: drop-shadow(5px 5px 10px #555);
+            }
+
+            h2 {
+              text-transform: capitalize;
+              font-size: 18px;
+              color: #6d6868;
+              font-weight: 700;
+              padding: 0;
+              margin: 0;
+            }
+          }
+
+          .card-body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 2rem;
+
+            .type {
+              background-color: #fffefe;
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              flex-direction: row;
+
+              span {
+                width: 4rem;
+                text-align: center;
+                background-color: rgb(194, 186, 76);
+                color: #fffefe;
+                border-radius: 5px;
+                padding: 4px;
+                text-transform: capitalize;
+              }
+            }
+
+            p {
+              font-size: 14px;
+              color: #000000;
+              font-weight: 900;
+              padding: 0;
+              margin: 0;
+            }
+          }
+
+          .card-footer {
+            display: flex;
+            justify-content: end;
+            align-items: flex-end;
+            padding: 1rem 1rem 0 1rem;
+            cursor: pointer;
+
+            span {
+              font-size: 14px;
+              color: #000000;
+              font-weight: 700;
+            }
+          }
+        }
+      }
     }
+  }
 }
