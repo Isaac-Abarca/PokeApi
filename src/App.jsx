@@ -1,12 +1,15 @@
+import { Aside } from './components/Aside'
 import { Pokemons } from './components/Pokemons'
 import './style.scss'
 function App() {
 
   return (
-    <div className='app'>
-      
-      <Pokemons />
-    </div>
+    <section>
+      <main className='main'>
+        <Pokemons />
+        <Aside/>
+      </main>
+    </section>
   )
 }
 

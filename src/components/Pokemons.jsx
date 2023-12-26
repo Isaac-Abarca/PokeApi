@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import PokemonCard from "./PokemonCard";
+import { IconSearch } from "@tabler/icons-react";
+import { Loader } from "./Loader";
 
 export const Pokemons = () => {
   const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("https://pokeapi.co/api/v2/pokemon")
+      fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
         .then((response) => response.json())
         .then((data) => {
           const pokemonUrls = data.results.map((pokemon) => pokemon.url);
@@ -30,33 +33,27 @@ export const Pokemons = () => {
   }, []);
 
   return (
-    <div>
+    <div className="pokemons">
       <header className="header">
-        <h1>Pokemons</h1>
+        <form>
+          <div>
+            <input type="text" placeholder="Search your Pokemon" />
+            <button type="submit">
+              <IconSearch />
+            </button>
+          </div>
+        </form>
       </header>
-      <main className="main">
-        <div className="pokemons">
-          {pokemonData.map((pokemon) => (
-            <article className="card" key={pokemon.id}>
-              {/* <div className="card-circulo"></div> */}
-              <header className="card-header">
-                <p>#{pokemon.id}</p>
-              </header>
-              <figure className="img">
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                <h2>{pokemon.name}</h2>
-              </figure>
-
-              <section className="card-body">
-                <div className="type">
-                  {pokemon.types.map((type) => (
-                    <span key={type.name}>{type.type.name}</span>
-                  ))}
-                </div>
-              </section>
-            </article>
-          ))}
-        </div>
+      <main className="pokemons-main">
+        {pokemonData.length > 0 ? (
+          pokemonData.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))
+        ) : (
+          <div className="no-results">
+            <Loader />
+          </div>
+        )}
       </main>
     </div>
   );
