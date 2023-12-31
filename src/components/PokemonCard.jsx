@@ -1,25 +1,23 @@
 import PropTypes from "prop-types";
-import { useState} from "react";
-import PokemonModal from "./PokeModal";
+//import { useState} from "react";
+//import PokemonModal from "./PokeModal";
 import { colorByType } from "../constants/pokemon";
 
-export default function PokemonCard({ pokemon }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function PokemonCard({ pokemon, onClick }) {
+  //const [isModalOpen, setIsModalOpen] = useState(false);
   const dynamicClass = pokemon.types[0].type.name;
 
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <>
-      <article className={`card ${dynamicClass}`} onClick={openModal} >
+      <article onClick={onClick} className={`card ${dynamicClass}`}>
         <header className="card-header">
           <p>#{pokemon.id}</p>
         </header>
@@ -40,9 +38,10 @@ export default function PokemonCard({ pokemon }) {
           </div>
         </section>
       </article>
-      {isModalOpen && (
+      {/* {isModalOpen && (
+
         <PokemonModal pokemonId={pokemon.id} closeModal={closeModal} />
-      )}
+      )}*/}
     </>
   );
 }
@@ -62,4 +61,5 @@ PokemonCard.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
