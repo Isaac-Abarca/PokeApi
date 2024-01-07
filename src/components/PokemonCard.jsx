@@ -4,20 +4,13 @@ import PropTypes from "prop-types";
 import { colorByType } from "../constants/pokemon";
 
 export default function PokemonCard({ pokemon, onClick }) {
-  //const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dynamicClass = pokemon.types[0].type.name;
 
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   return (
     <>
-      <article onClick={onClick} className={`card ${dynamicClass}`}>
+      <article onClick={() => onClick(pokemon)} className={`card ${dynamicClass}`}>
         <header className="card-header">
           <p>#{pokemon.id}</p>
         </header>
@@ -38,10 +31,6 @@ export default function PokemonCard({ pokemon, onClick }) {
           </div>
         </section>
       </article>
-      {/* {isModalOpen && (
-
-        <PokemonModal pokemonId={pokemon.id} closeModal={closeModal} />
-      )}*/}
     </>
   );
 }

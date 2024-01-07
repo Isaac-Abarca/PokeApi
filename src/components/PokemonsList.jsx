@@ -4,12 +4,12 @@ import usePokemonContext  from "../hooks/usePokemonContext";
 
 export const PokemonsList = ({ pokemonData }) => {
 
-  const { showPokemonById } = usePokemonContext();
+  const { showPokemon } = usePokemonContext();
 
   return (
     <div className="pokemons-main">
       { pokemonData.map((pokemon) => (
-        <PokemonCard onClick={showPokemonById} key={pokemon.id} pokemon={pokemon} />
+        <PokemonCard onClick={showPokemon} key={pokemon.id} pokemon={pokemon} />
       ))} 
     </div>
   );
