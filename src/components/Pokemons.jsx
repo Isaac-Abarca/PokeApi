@@ -81,7 +81,9 @@ export const Pokemons = () => {
           </div>
         </form>
       </header>
-      <PokemonsList pokemonData={pokemonByName.slice(0, limit)} />
+      <div className="container">
+        <PokemonsList pokemonData={pokemonByName.slice(0, limit)} />
+      </div>
       <span ref={targetObserver}></span>
     </div>
   );
