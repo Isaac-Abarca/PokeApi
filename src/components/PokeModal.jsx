@@ -2,17 +2,20 @@
 /* eslint-disable no-unused-vars */
 import { IconX } from "@tabler/icons-react";
 import { colorByType, colorByStat, colorByTypeBagckground } from "../constants/pokemon";
+import usePokemonContext from "../hooks/usePokemonContext";
 
 
 import PropTypes from 'prop-types';
 
 function PokemonModal({ showModal, onCloseModal, pokemon }) {
+  const {showPokemon} = usePokemonContext();
+  
   if (!pokemon) {
     return null;
   }
 
   const { id, name, height, weight, stats, types, abilities, description, evolutions, image } = pokemon;
-
+  
   return (
     <section style={{ backgroundColor: colorByTypeBagckground[types[0]] }} className={`modal ${showModal ? "active" : "disabled"} `}>
       <button onClick={onCloseModal} className="close-modal">
@@ -66,12 +69,26 @@ function PokemonModal({ showModal, onCloseModal, pokemon }) {
               <div className="stats-list">
                 {stats.map((stat, index) => (
                   <div className="stats-container" key={index}>
-                    {console.log(stat)}
                     <span style={{ backgroundColor: colorByStat[stat.name] }} className="stats-name">{`${stat.name}`}</span>
                     <span className="stats-value">{`${stat.base_stat}`}</span>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="evolutions">
+              <h3>Evolutions:</h3>
+              <section className="evolutions-list">
+                {evolutions.map((evolution, index) => (
+                  <article className="evolutions-container" key={index}>
+                    {index !== 0 &&
+                      <span>Lv {evolution.min_level}</span>
+                    }
+                    <button onClick={() => showPokemon(evolution.pokemonInfo)}>
+                      <img src={evolution.image} alt={evolution.name} />
+                    </button>
+                  </article>
+                ))}
+              </section>
             </div>
           </section>
 
