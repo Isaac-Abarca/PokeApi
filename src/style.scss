@@ -121,6 +121,8 @@ section {
           grid-gap: 1.5rem;
           position: relative;
 
+          
+
           .loader {
             .wrapper {
               position: absolute;
@@ -177,7 +179,6 @@ section {
 
           .card {
             min-width: 12rem;
-            max-width: 15rem;
             max-height: 22rem;
             background-color: #fffefe;
             box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);

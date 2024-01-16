@@ -9,9 +9,6 @@
   text-align: center;
 }
 
-
-
-
 @media screen and (min-width: 1035px) {
   .modal-content {
     position: sticky;
