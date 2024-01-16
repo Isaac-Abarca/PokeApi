@@ -27,7 +27,7 @@ export const Pokemons = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("https://pokeapi.co/api/v2/pokemon?limit=60")
+      fetch("https://pokeapi.co/api/v2/pokemon?limit=900")
         .then((response) => response.json())
         .then((data) => {
           const pokemonUrls = data.results.map((pokemon) => pokemon.url);
