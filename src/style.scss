@@ -20,6 +20,7 @@
 
 section {
   background-color: #f0f2f5;
+
   .main {
     max-width: 1400px;
     min-height: 100vh;
@@ -40,7 +41,7 @@ section {
 
     .aside {
       position: sticky;
-      height: 85dvh;
+      height: 100dvh;
       background-color: #ffffff;
       box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);
       border-radius: 10px;
@@ -63,7 +64,6 @@ section {
         font-size: 18px;
         font-weight: 600;
       }
-
 
     }
 
@@ -182,6 +182,7 @@ section {
             background-color: #fffefe;
             box-shadow: 2px 2px 2px 1px rgba(97, 94, 94, 0.2);
             border-radius: 10px;
+            cursor: pointer;
             transition: transform 0.2s ease-in-out;
             position: relative;
 
@@ -407,25 +408,22 @@ section {
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
       background-color: rgba(121, 204, 84, 1);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
       transition: opacity 0.5s, visibility 0.5s ease-in-out;
 
-      @media (min-width: 1024px) {
-        display: none;
+      display: none;
+
+      @media (max-width: 1024px) {
+        display: block;
       }
 
       &.active {
-        display: block;
         visibility: visible;
         opacity: 1;
       }
 
       &.disabled {
-        display: none;
         visibility: hidden;
         opacity: 0;
       }
@@ -458,7 +456,7 @@ section {
       }
 
 
-
+      /*
       .modal-content {
         position: absolute;
         bottom: 0;
@@ -689,7 +687,7 @@ section {
             }
           }
 
-          .evolutions{
+          .evolutions {
             padding: 0 .5rem;
 
 
@@ -714,8 +712,8 @@ section {
                 justify-content: flex-start;
                 align-items: center;
                 gap: 1rem;
-                
-                span{
+
+                span {
                   width: 3rem;
                   height: 1.5rem;
                   border-radius: 10px;
@@ -727,7 +725,7 @@ section {
                   font-weight: 700;
                   background-color: #F6F8FC;
                 }
-                
+
                 button {
                   width: 5rem;
                   height: 4rem;
@@ -739,9 +737,9 @@ section {
                   outline: none;
                   cursor: pointer;
                   background-color: #ffffff;
-                  transition:  0.3s ease-in-out;
+                  transition: 0.3s ease-in-out;
 
-                  &:hover{
+                  &:hover {
                     background-color: #E6E9F2;
                   }
 
@@ -757,6 +755,7 @@ section {
           }
         }
       }
+      */
     }
   }
 }

@@ -11,7 +11,7 @@ function App() {
     <section>
       <main className='main'>
         <Pokemons />
-        <Aside />
+        <Aside onCloseModal={closePokemonDetail} showData={showDetailPokemos} pokemon={pokemonDetail}/>
         <PokeModal  onCloseModal={closePokemonDetail} showModal={showDetailPokemos} pokemon={pokemonDetail} />
       </main>
     </section>
